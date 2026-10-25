@@ -107,3 +107,19 @@ resource "aws_vpc_security_group_ingress_rule" "endpoint_from_lambda" {
   to_port                      = 443
   description                  = "HTTPS from Lambda"
 }
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Secrets Manager VPC endpoint
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# access to secrets manager, so Lambda can fetch the DB password without internet access
+resource "aws_vpc_endpoint" "secretsmanager" {
+  vpc_id          = aws_vpc.main.id
+  service_name    = "com.amazonaws.${data.aws_region.current.region}.secretsmanager"
+  vpc_endpoint_type  = "Interface"
+  subnet_ids = [aws_subnet.private_subnet_a.id, aws_subnet.private_subnet_b.id]
+  security_group_ids  = [aws_security_group.endpoint.id]
+  private_dns_enabled = true
+  tags = {
+    Name = "${var.name}-secretsmanager-endpoint"
+  }
+}
