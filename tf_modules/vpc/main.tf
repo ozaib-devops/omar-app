@@ -112,6 +112,9 @@ resource "aws_vpc_security_group_ingress_rule" "endpoint_from_lambda" {
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # access to secrets manager, so Lambda can fetch the DB password without internet access
+
+data "aws_region" "current" {}
+
 resource "aws_vpc_endpoint" "secretsmanager" {
   vpc_id          = aws_vpc.main.id
   service_name    = "com.amazonaws.${data.aws_region.current.region}.secretsmanager"
