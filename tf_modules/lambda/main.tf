@@ -1,6 +1,6 @@
-review later - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
+#review later - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
 
-https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy
+#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy
 
 
 
