@@ -9,3 +9,8 @@ backend.hcl
 
 # Ignoring Windows noise
 Thumbs.db
+
+
+# Node / lambda build
+node_modules/
+*.zip
