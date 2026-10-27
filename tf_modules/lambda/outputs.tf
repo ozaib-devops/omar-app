@@ -5,3 +5,6 @@ output "function_name" {
 output "function_url" {
   value = aws_lambda_function_url.api.function_url
 }
+output "function_arn" {
+  value = aws_lambda_function.api.arn
+}
