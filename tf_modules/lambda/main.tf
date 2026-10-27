@@ -55,3 +55,39 @@ resource "aws_lambda_function" "api" {
     }
   }
 }
+resource "aws_iam_role_policy_attachment" "vpc_access" {
+  role       = aws_iam_role.lambda.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+}
+
+data "aws_iam_policy_document" "secret" {
+  statement {
+    effect    = "Allow"
+    actions   = ["secretsmanager:GetSecretValue"]
+    resources = [var.db_secret_arn]
+  }
+}
+
+resource "aws_iam_role_policy" "secret" {
+  name   = "read-db-secret"
+  role   = aws_iam_role.lambda.id
+  policy = data.aws_iam_policy_document.secret.json
+}
+
+resource "aws_cloudwatch_log_group" "api" {
+  name              = "/aws/lambda/${var.name}-api"
+  retention_in_days = 7
+}
+
+resource "aws_lambda_function_url" "api" {
+  function_name      = aws_lambda_function.api.function_name
+  authorization_type = "NONE"
+}
+
+resource "aws_lambda_permission" "url_invoke" {
+  statement_id             = "AllowFunctionUrlInvoke"
+  action                   = "lambda:InvokeFunction"
+  function_name            = aws_lambda_function.api.function_name
+  principal                = "*"
+  invoked_via_function_url = true
+}
