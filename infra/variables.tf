@@ -9,3 +9,7 @@ variable "environment" {
   type        = string
   default     = "stg"
 }
+variable "github_repo" {
+  type    = string
+  default = "ozaib-devops/omar-app"
+}
