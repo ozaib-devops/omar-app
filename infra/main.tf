@@ -19,3 +19,15 @@ module "github_oidc" {
   github_repo         = var.github_repo
   lambda_function_arn = module.lambda.function_arn
 }
+
+
+module "lambda" {
+  source        = "../tf_modules/lambda"
+  name          = local.name
+  source_dir    = "${path.root}/../app"
+  subnet_ids    = module.vpc.private_subnet_ids
+  lambda_sg_id  = module.vpc.lambda_sg_id
+  db_address    = module.rds.db_address
+  db_port       = module.rds.db_port
+  db_secret_arn = module.rds.db_secret_arn
+}
