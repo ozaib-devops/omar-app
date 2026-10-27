@@ -1,5 +1,6 @@
 # Docs:
 # https://docs.github.com/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+# https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider
 
 resource "aws_iam_openid_connect_provider" "github" {

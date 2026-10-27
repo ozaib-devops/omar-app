@@ -5,11 +5,11 @@ variable "region" {
 }
 
 variable "environment" {
-  description = "adding env name to resources"
   type        = string
   default     = "stg"
 }
+
 variable "github_repo" {
-  type    = string
-  default = "ozaib-devops/omar-app"
+  type        = string
+  default     = "ozaib-devops@98025347/omar-app@1432536164"
 }
