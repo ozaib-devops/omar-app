@@ -1,0 +1,5 @@
+bucket       = "your-state-bucket-name"
+key          = "omar-app/stg/terraform.tfstate"
+region       = "eu-west-2"
+encrypt      = true
+use_lockfile = true
