@@ -22,7 +22,7 @@ jobs:
           aws-region: eu-west-2
 
       - name: Zip app
-        run: zip -r app.zip app
+        run: cd app && zip -r ../app.zip .
 
       - name: Deploy to Lambda
         run: aws lambda update-function-code --function-name omar-stg-api --zip-file fileb://app.zip
