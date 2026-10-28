@@ -11,14 +11,9 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-variable "bucket_name" {
-  description = "must be globally unique"
-  type        = string
-  default     = "omar-app-tfstate-ozaib"
-}
-
+# bucket names are global, change this if it's already taken
 resource "aws_s3_bucket" "state" {
-  bucket = var.bucket_name
+  bucket = "omar-app-tfstate-test"
 }
 
 resource "aws_s3_bucket_versioning" "state" {

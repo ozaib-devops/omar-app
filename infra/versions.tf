@@ -12,5 +12,12 @@ terraform {
     }
   }
 
-  backend "s3" {}
+  # must match the bucket in create-s3-tfstate/main.tf
+  backend "s3" {
+    bucket       = "omar-app-tfstate-test"
+    key          = "omar-app/stg/terraform.tfstate"
+    region       = "eu-west-2"
+    encrypt      = true
+    use_lockfile = true
+  }
 }
